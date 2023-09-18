@@ -171,14 +171,14 @@ def main():
                         page_icon="M", 
                         layout="wide", 
                         initial_sidebar_state="expanded")
-    with open("assets/style.css") as f:
+    with open("asset/style.css") as f:
         st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
   
     input_data = add_sidebar()
 
     with st.container():
         st.title("Breast Cancer Wisconsin (Diagnostic)")
-        st.write("Breast Cancer Diagnosis Prediction is a web application based on machine learning. It allows users to adjust feature values and select from three algorithms (KNN, Logistic Regression, and Support Vector Machine) to predict breast cancer diagnosis. The Radar Chart provides a visual representation of how feature modifications impact predictions")
+        st.write("Breast Cancer Diagnosis Prediction is a web application based on machine learning and Streamlit. It allows users to adjust feature values and select from three algorithms (KNN, Logistic Regression, and Support Vector Machine) to predict breast cancer diagnosis. The Radar Chart provides a visual representation of how feature modifications impact predictions")
     col1, col2 = st.columns([4, 1])
     with col1:
         radarChart = get_radar_chart(input_data)
