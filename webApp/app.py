@@ -17,42 +17,17 @@ def add_sidebar():
     data = get_clean_data()
 
     slider_labels = [
-            ("Model Used", "opt"),
-            ("Radius (mean)", "radius_mean"),
-            ("Texture (mean)", "texture_mean"),
-            ("Perimeter (mean)", "perimeter_mean"),
-            ("Area (mean)", "area_mean"),
-            ("Smoothness (mean)", "smoothness_mean"),
-            ("Compactness (mean)", "compactness_mean"),
-            ("Concavity (mean)", "concavity_mean"),
-            ("Concave points (mean)", "concave points_mean"),
-            ("Symmetry (mean)", "symmetry_mean"),
-            ("Fractal dimension (mean)", "fractal_dimension_mean"),
-            ("Radius (se)", "radius_se"),
-            ("Texture (se)", "texture_se"),
-            ("Perimeter (se)", "perimeter_se"),
-            ("Area (se)", "area_se"),
-            ("Smoothness (se)", "smoothness_se"),
-            ("Compactness (se)", "compactness_se"),
-            ("Concavity (se)", "concavity_se"),
-            ("Concave points (se)", "concave points_se"),
-            ("Symmetry (se)", "symmetry_se"),
-            ("Fractal dimension (se)", "fractal_dimension_se"),
-            ("Radius (worst)", "radius_worst"),
-            ("Texture (worst)", "texture_worst"),
-            ("Perimeter (worst)", "perimeter_worst"),
-            ("Area (worst)", "area_worst"),
-            ("Smoothness (worst)", "smoothness_worst"),
-            ("Compactness (worst)", "compactness_worst"),
-            ("Concavity (worst)", "concavity_worst"),
-            ("Concave points (worst)", "concave points_worst"),
-            ("Symmetry (worst)", "symmetry_worst"),
-            ("Fractal dimension (worst)", "fractal_dimension_worst"),
+            # add your features:
+            ("model used", "model")
+            ("Feature", "example")
+            # ....
         ]
     input_dict = {}
 
     for label, key in slider_labels:
+        # give mean, max and min
         if label == "Model Used":
+            # is string or object feature, so skip it
             input_dict[key] = st.sidebar.selectbox('Model',('Logistic Regression', 'KNN', 'Support Vector Machine'))
         else:
             input_dict[key] = st.sidebar.slider(
@@ -65,12 +40,11 @@ def add_sidebar():
     
 
 def get_scaled_values(input_dict):
-    print(input_dict)
     data = get_clean_data()
     X = data.drop(['diagnosis'], axis=1)
     scaled_dict = {}    
     for key, value in input_dict.items():
-        if key == "opt":
+        if key == "model":
             pass
         else:
             max_val = X[key].max()
@@ -99,27 +73,9 @@ def get_radar_chart(input_data):
         fill='toself',
         name='Mean Value'
     ))
-    fig.add_trace(go.Scatterpolar(
-        r=[
-          input_data['radius_se'], input_data['texture_se'], input_data['perimeter_se'], input_data['area_se'],
-          input_data['smoothness_se'], input_data['compactness_se'], input_data['concavity_se'],
-          input_data['concave points_se'], input_data['symmetry_se'],input_data['fractal_dimension_se']
-        ],
-        theta=categories,
-        fill='toself',
-        name='Standard Error'
-    ))
-    fig.add_trace(go.Scatterpolar(
-        r=[
-          input_data['radius_worst'], input_data['texture_worst'], input_data['perimeter_worst'],
-          input_data['area_worst'], input_data['smoothness_worst'], input_data['compactness_worst'],
-          input_data['concavity_worst'], input_data['concave points_worst'], input_data['symmetry_worst'],
-          input_data['fractal_dimension_worst']
-        ],
-        theta=categories,
-        fill='toself',
-        name='Worst Value'
-    ))
+    #  Do the same for worst and the tested value
+
+    # show your radar Chart
     fig.update_layout(
         polar=dict(
             radialaxis=dict(
@@ -188,18 +144,7 @@ def main():
     with st.container():
         data = get_clean_data()
         st.dataframe(data)
-    hide_st_style = """
-            <style>
-            #MainMenu {display: none;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-    st.markdown(hide_st_style, unsafe_allow_html=True)
-    st.markdown("© 2023 [Marwane Mezzane](https://www.marwanedata.com)")
-
-
-
+   
 
 
 
