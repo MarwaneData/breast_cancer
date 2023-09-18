@@ -137,9 +137,9 @@ def get_radar_chart(input_data):
 
 def add_predictions(input_data):
     model = pickle.load(open("model/model1.pkl", "rb"))
-    model2 = pickle.load(open("model/model2.pkl", "rb"))
-    model3 = pickle.load(open("model/model3.pkl", "rb"))
-    scaler = pickle.load(open("model/scaler.pkl", "rb"))
+    model2 = pickle.load(open("/model/model2.pkl", "rb"))
+    model3 = pickle.load(open("/model/model3.pkl", "rb"))
+    scaler = pickle.load(open("/model/scaler.pkl", "rb"))
     if input_data['opt'] == 'Logistic Regression':
         model = model
     elif input_data['opt'] == 'KNN':
@@ -171,7 +171,7 @@ def main():
                         page_icon="M", 
                         layout="wide", 
                         initial_sidebar_state="expanded")
-    with open("/mount/src/breastcancer/assets/style.css") as f:
+    with open("/assets/style.css") as f:
         st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
   
     input_data = add_sidebar()
