@@ -7,7 +7,7 @@ import numpy as np
 
 
 def get_clean_data():
-    data = pd.read_csv("../model/data/data.csv")
+    data = pd.read_csv("model/data/data.csv")
     data = data.drop(['Unnamed: 32', 'id'], axis=1)
     data['diagnosis'] = data['diagnosis'].map({ 'M': 1, 'B': 0 })
     return data
@@ -137,9 +137,9 @@ def get_radar_chart(input_data):
 
 def add_predictions(input_data):
     model = pickle.load(open("model/model1.pkl", "rb"))
-    model2 = pickle.load(open("/model/model2.pkl", "rb"))
-    model3 = pickle.load(open("/model/model3.pkl", "rb"))
-    scaler = pickle.load(open("/model/scaler.pkl", "rb"))
+    model2 = pickle.load(open("model/model2.pkl", "rb"))
+    model3 = pickle.load(open("model/model3.pkl", "rb"))
+    scaler = pickle.load(open("model/scaler.pkl", "rb"))
     if input_data['opt'] == 'Logistic Regression':
         model = model
     elif input_data['opt'] == 'KNN':
