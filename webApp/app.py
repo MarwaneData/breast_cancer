@@ -17,10 +17,8 @@ def add_sidebar():
     data = get_clean_data()
 
     slider_labels = [
-            # add your features:
             ("model used", "model")
             ("Feature", "example")
-            # ....
         ]
     input_dict = {}
 
